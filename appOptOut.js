@@ -4,16 +4,14 @@ const baseServer = "https://node.algoexplorerapi.io/";
 let algodClient = new algosdk.Algodv2("", baseServer, "");
 
 (async () => {
-  const account = algosdk.mnemonicToSecretKey(
-    "xxxx xxxxx xxxxx xxxxxx ...." // mnemonic
-  );
+  const account = algosdk.mnemonicToSecretKey("xxxx xxxxx xxxxx xxxxxx ...."); // mnemonic
 
   const sp = await algodClient.getTransactionParams().do();
 
   let txn = algosdk.makeApplicationClearStateTxnFromObject({
     from: account.addr,
     suggestedParams: sp,
-    appIndex: 350338509, // APP ID
+    appIndex: 3500000, // APP ID
   });
 
   let signedTxn = txn.signTxn(account.sk);
